@@ -47,30 +47,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 future: result,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     );
                   }
                   return Center(
-                      child: FutureBuilder<Map>(
-                    future: allCurrencies,
-                    builder: (context, currentsnapsot) {
-                      if (currentsnapsot.connectionState ==
-                          ConnectionState.waiting) {
-                        return Center(
-                          child: CircularProgressIndicator(),
+                    child: FutureBuilder<Map>(
+                      future: allCurrencies,
+                      builder: (context, currentsnapsot) {
+                        if (currentsnapsot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return Column(
+                          children: [
+                            UsdToAny(
+                              rates: currentsnapsot.data!,
+                              currencies: snapshot.data!.rates,
+                            ),
+                          ],
                         );
-                      }
-                      return Column(
-                        children: [
-                          UsdToAny(
-                            rates: snapshot.data!,
-                            currencies: snapshot.data!.rates,
-                          ),
-                        ],
-                      );
-                    },
-                  ));
+                      },
+                    ),
+                  );
                 },
               ),
             ),

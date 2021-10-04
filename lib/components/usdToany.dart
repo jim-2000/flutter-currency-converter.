@@ -63,7 +63,9 @@ class _UsdToAnyState extends State<UsdToAny> {
                         .toSet()
                         .map<DropdownMenuItem<String>>((value) {
                       return DropdownMenuItem<String>(
-                          child: Text(value), value: value);
+                        child: Text(value),
+                        value: value,
+                      );
                     }).toList(),
                   ),
                 ),
@@ -95,7 +97,7 @@ class _UsdToAnyState extends State<UsdToAny> {
                 ),
               ],
             ),
-            Text(answer),
+            Text('$answer'),
           ],
         ),
       ),

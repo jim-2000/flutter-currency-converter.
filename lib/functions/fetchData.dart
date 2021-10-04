@@ -9,6 +9,8 @@ Future<RatesModel> fetchrates() async {
   var response = await http.get(
       Uri.parse("https://openexchangerates.org/api/latest.json?app_id=" + keY));
   final result = ratesModelFromJson(response.body);
+  const kk = '';
+  // print(result.rates);
   return result;
 }
 
@@ -36,7 +38,7 @@ String convertusd(Map exchangeRates, String usd, String currency) {
   var output =
       ((exchangeRates[currency] * double.parse(usd)).toStringAsFixed(2))
           .toString();
-  return output;
+  return output.toString();
 }
 //
 
